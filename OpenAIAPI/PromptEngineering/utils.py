@@ -5,12 +5,16 @@ load_dotenv()
 client = OpenAI()
 
 
+def print_response(prompt):
+    print(get_response(prompt))
+
+
 def get_response(prompt):
     response = client.chat.completions.create(
-        model = "gpt-3.5-turbo",
-        messages = [
-            {"role":"user", "content": prompt}
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "user", "content": prompt}
         ],
-        temperature = 0
+        temperature=0
     )
     return response.choices[0].message.content
