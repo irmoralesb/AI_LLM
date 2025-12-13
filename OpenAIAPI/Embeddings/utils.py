@@ -61,7 +61,7 @@ def get_articles_with_keywords():
         {
             "headline": "Tech Giant Buys 49% Stake In AI Startup",
             "topic": "Tech",
-            "keywords": ["artificial intelligence", "acquisition", "startup investment"]
+            "keywords": ["business", "ai"]
         },
         {
             "headline": "New Social Media Platform Has Everyone Talking!",
