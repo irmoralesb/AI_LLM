@@ -1,3 +1,4 @@
+import dis
 from openai import OpenAI
 from dotenv import load_dotenv
 from scipy.spatial import distance
@@ -108,6 +109,13 @@ def create_article_text(article):
     """
 
 
+def create_article_text_without_topic(article):
+    return f"""
+    Headline: {article['headline']}
+    keywords: {', '.join(article['keywords'])}
+    """
+
+
 def find_n_closest(query_vector, embeddings, n=3):
     distances = []
     for index, embedding in enumerate(embeddings):
@@ -115,3 +123,11 @@ def find_n_closest(query_vector, embeddings, n=3):
         distances.append({"distance": dist, "index": index})
     distances_sorted = sorted(distances, key=lambda x: x["distance"])
     return distances_sorted[0:n]
+
+
+def find_closest(query_vector, embeddings):
+    distances = []
+    for index, embedding in enumerate(embeddings):
+        dist = distance.cosine(query_vector, embedding)
+        distances.append({"distance":dist,"index":index})
+    return min(distances, key=lambda x: x["distance"])
